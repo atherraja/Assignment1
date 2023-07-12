@@ -28,17 +28,6 @@ public class StudentController {
         return ResponseEntity.ok("Student saved successfully");
     }
 
-
-
-
-
-
-
-
-
-
-
-
     @GetMapping("getAllStudents")
     public List<StudentInfo> getAllStudentInfoList() {
         return studentInfoService.getAllStudentInfoList();
@@ -48,6 +37,15 @@ public class StudentController {
 List<StudentInfo> studentInfoList = studentInfoService.getFilteredStudents(status);
         return studentInfoList;
     }
+    @GetMapping("getBy/{rollNo}")
+    public ResponseEntity<?> getByRollNo(@PathVariable int rollNo){
+        StudentInfo studentInfo = studentInfoService.getByRollNo(rollNo);
+        if(studentInfo == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(studentInfo);
+    }
+
     @PutMapping("student/{id}")
     public StudentInfo
             updateStudentInfo(@RequestBody StudentInfo studentInfo,

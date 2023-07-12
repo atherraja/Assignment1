@@ -22,6 +22,11 @@ public class StudentInfoServiceImpl implements StudentInfoService {
         Optional<StudentInfo> studentInfo = studentInfoRepository.findByRollNo(rollNo);
         return Optional.ofNullable(studentInfo.orElse(null));
     }
+    @Override
+    public StudentInfo getByRollNo(int rollNo) {
+        Optional<StudentInfo> studentInfo = studentInfoRepository.findByRollNo(rollNo);
+        return studentInfo.orElse(null);
+    }
 
     @Override
     public List<StudentInfo> getAllStudentInfoList() {
@@ -32,6 +37,7 @@ public class StudentInfoServiceImpl implements StudentInfoService {
     public List<StudentInfo> getFilteredStudents(List<String> status) {
         return studentInfoRepository.findByStatusIn(status);
     }
+
     @Override
     public StudentInfo updateStudentInfo(StudentInfo studentInfo, Long StudentId)
     {

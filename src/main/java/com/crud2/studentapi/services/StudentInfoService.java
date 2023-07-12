@@ -9,6 +9,7 @@ import java.util.Optional;
 public interface StudentInfoService {
     StudentInfo saveStudentInfo(StudentInfo studentInfo);
 Optional<StudentInfo> findByRollNo(int rollNo);
+StudentInfo getByRollNo(int rollNo);
     List<StudentInfo> getAllStudentInfoList();
     List<StudentInfo> getFilteredStudents(@RequestParam List<String> status);
     StudentInfo updateStudentInfo(StudentInfo studentInfo,

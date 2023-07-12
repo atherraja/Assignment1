@@ -12,4 +12,5 @@ public interface StudentInfoRepository extends JpaRepository<StudentInfo, Long> 
 
     List<StudentInfo> findByStatusIn(List<String> status);
     Optional<StudentInfo> findByRollNo(int rollNo);
+
 }
