@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentInfoServiceImpl implements StudentInfoService {
@@ -16,6 +17,11 @@ public class StudentInfoServiceImpl implements StudentInfoService {
     public StudentInfo saveStudentInfo(StudentInfo studentInfo) {
         return studentInfoRepository.save(studentInfo);
     }
+    @Override
+    public Optional<StudentInfo> findByRollNo(int rollNo) {
+        Optional<StudentInfo> studentInfo = studentInfoRepository.findByRollNo(rollNo);
+        return Optional.ofNullable(studentInfo.orElse(null));
+    }
 
     @Override
     public List<StudentInfo> getAllStudentInfoList() {
@@ -24,12 +30,8 @@ public class StudentInfoServiceImpl implements StudentInfoService {
     }
     @Override
     public List<StudentInfo> getFilteredStudents(List<String> status) {
-
         return studentInfoRepository.findByStatusIn(status);
     }
-
-
-
     @Override
     public StudentInfo updateStudentInfo(StudentInfo studentInfo, Long StudentId)
     {
